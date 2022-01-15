@@ -1,4 +1,4 @@
-# YANBF Generator GUI
+# Simple Web App GUI for YANBF Generator
 
 
 
@@ -6,7 +6,7 @@ This was built using [Polymer Starter Kit](https://github.com/Polymer/polymer-st
 
 And here is the [Electron JS Project Page](https://www.electronjs.org/) for building web app wrappers.
 
-This is only a GUI for the @lifehackerhansol Python project [YANBF Generator](https://github.com/lifehackerhansol/YANBF). You need to follow their instructions and then put the executable in the same directory as `generator.py`.
+This is only a GUI for the [lifehackerhansol](https://github.com/lifehackerhansol) Python project [YANBF Generator](https://github.com/lifehackerhansol/YANBF). You need to follow their instructions and then put the executable in the same directory as `generator.py`.
 
 For now, there's only a **Windows x64 executable**, but you may try to create an OSX or Linux executable file from source. I'll add those myself later to the releases page.  
 
