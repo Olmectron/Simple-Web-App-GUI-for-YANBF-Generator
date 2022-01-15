@@ -7,8 +7,9 @@ const url = require('url')
 var PROTOCOL = 'file';
 const WEB_FOLDER = 'public_web';
 
-var testing=false;
-var hideToolbarFull=true;
+var testing=true;
+var hideToolbarFull=false;
+
 function setupInterceptFiles(){
   electron.protocol.interceptFileProtocol(PROTOCOL, (request, callback) => {
     // // Strip protocol
