@@ -7,6 +7,7 @@ const url = require('url')
 var PROTOCOL = 'file';
 const WEB_FOLDER = 'public_web';
 
+var testing=false;
 var hideToolbarFull=true;
 function setupInterceptFiles(){
   electron.protocol.interceptFileProtocol(PROTOCOL, (request, callback) => {
@@ -74,11 +75,17 @@ function createWindow () {
   // and load the index.html of the app.
 //  mainWindow.loadFile('index.html')
 
-mainWindow.loadURL(url.format({
-  pathname: 'index.html',
-  protocol: PROTOCOL + ':',
-  slashes: true
-}));
+if(testing){
+  mainWindow.loadURL("http://localhost:8081")
+}
+else{
+  mainWindow.loadURL(url.format({
+    pathname: 'index.html',
+    protocol: PROTOCOL + ':',
+    slashes: true
+  }));
+}
+
 
 //mainWindow.loadURL("http://localhost:8081")
   // Open the DevTools.
