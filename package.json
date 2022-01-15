@@ -1,0 +1,37 @@
+{
+  "name": "YANBFGenerator",
+  "version": "1.0.0",
+  "description": "An Electron GUI application for YANBF Generator",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.olmectron.yanbf.gui",
+    "npmRebuild": false,
+    "mac": {
+      "category": "com.olmectron.yanbf.gui"
+    },
+    "win": {
+      "target": [
+        "portable"
+      ]
+    }
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^13.2.0",
+    "electron-builder": "^22.11.7",
+    "electron-rebuild": "^2.3.5"
+  }
+}
