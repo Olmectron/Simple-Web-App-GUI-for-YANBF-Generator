@@ -13694,25 +13694,6 @@ setRootPath(MyAppGlobals.rootPath);class MyApp extends ElectronMixin(PolymerElem
           </div>
 
         </div>
- 
-
-          <div style="padding: 8px; font-size: 12px; font-weight: 600;">Python command/location</div>
-          <div style="padding: 8px; font-size: 13px; color: var(--paper-grey-600);">If your process gets stale (progress circle keeps going on more than 30 seconds and nothing happens), <span on-click="reload" style="text-decoration: underline; color: var(--paper-blue-500); cursor:pointer;">restart the app</span> and select a different command or location.</div>
-          <paper-radio-group attr-for-selected="name" selected="{{selectedPython}}">
-          <paper-radio-button on-click="setPython" name="python3">python3</paper-radio-button>
-          <paper-radio-button on-click="setPython" name="py -3">py -3</paper-radio-button>
-          <paper-radio-button on-click="setPython" name="C:\\Python39\\python.exe">C:\\Python39\\python.exe</paper-radio-button>
-          <paper-radio-button on-click="setPythonInput" name="other">Other</paper-radio-button>
-          </paper-radio-group>
-          
-
-          <template is="dom-if" if="[[isString(selectedPython,'other')]]">
-          <paper-input on-input="setPythonInput" placeholder="Example C:\\Python39\\python.exe" always-float-label style="margin: 8px;" label="Other command/location" value="{{otherPython}}"></paper-input>
-          </template>
-
-
-        
-
 
 
 <!--
@@ -13754,8 +13735,8 @@ setRootPath(MyAppGlobals.rootPath);class MyApp extends ElectronMixin(PolymerElem
 //ipcRenderer.send("requestFiles");
 }_getCurrentPath(){const{remote}=require("electron");var camino=remote.process.env.PORTABLE_EXECUTABLE_DIR;if(!camino){camino="."}return camino}checkDirectoryNew(e){if(e.target.files&&e.target.files[0]){var context=this,file=e.target.files[0];console.log("FIle!",file);var splitterString="/";if(-1<file.path.indexOf("\\")){splitterString="\\"}var fileSplit=e.target.files[0].path.split(splitterString);fileSplit.splice(fileSplit.length-1,1);var pathFinal=fileSplit.join(splitterString);console.log("File DIR",pathFinal);LocalStoreQuery.set("directoryPath",pathFinal);MiscUtils.Toast.show("Generator directory path updated");//         this.set("_selectedUploadButtonFile",e.target.files[0]);
 context.shadowRoot.querySelector(".dir-input").value=""}else{MiscUtils.Toast.show("You didn't select a directory")}}constructor(){super();var context=this;LocalStoreQuery.addFieldCallback("directoryPath",function(path){if(null==path||""==path||"null"==path){LocalStoreQuery.set("directoryPath",context._getCurrentPath())}else{context.set("directoryPath",path);//        LocalStoreQuery.set("directoryPath",context._getCurrentPath());
-}});LocalStoreQuery.addFieldCallback("selectedPython",function(target){if(!target){context.set("selectedPython","python3");return}if(target.startsWith("other")){context.set("selectedPython","other");if(-1<target.indexOf("---")){context.set("otherPython",target.split("---")[1]||"")}}else{context.set("selectedPython",target)}})}setDirectoryPathInput(e){var context=this;console.log("Calling directory input");if(this.lastDirectoryDebounce){clearTimeout(this.lastDirectoryDebounce);this.set("lastDirectoryDebounce",null)}this.set("lastDirectoryDebounce",setTimeout(function(){LocalStoreQuery.set("directoryPath",context.directoryPath);MiscUtils.Toast.show("Generator directory path updated")},500))}setPythonInput(e){var context=this;console.log("Calling python input");if(this.lastInputDebounce){clearTimeout(this.lastInputDebounce);this.set("lastInputDebounce",null)}this.set("lastInputDebounce",setTimeout(function(){var command="other---"+(context.otherPython||"").trim();LocalStoreQuery.set("selectedPython",command);MiscUtils.Toast.show("Selected python command/location updated")},500))}setPython(){console.log("Calling python common");var context=this;setTimeout(function(){var selectedPython=context.selectedPython;LocalStoreQuery.set("selectedPython",selectedPython);MiscUtils.Toast.show("Selected python command/location updated")},250)}setSelectedTarget(){var context=this;setTimeout(function(){var selectedTarget=context.selectedTarget;LocalStoreQuery.set("selectedTarget",selectedTarget)},250)}_sortName(a,b){var aName=a.name?a.name.toLowerCase().trim():"zzzzzz",bName=b.name?b.name.toLowerCase().trim():"zzzzzz";return aName.localeCompare(bName)}saveCheckboxOption(e){var checkbox=e.target.closest("paper-checkbox"),name=checkbox.getAttribute("name");console.log("Saving:"+name);var context=this;setTimeout(function(){LocalStoreQuery.set(name,!0==context[name]?"true":"false")},250)}updateFolderForGames(){LocalStoreQuery.set("folderForGames",this.folderForGames);MiscUtils.Toast.show("Folder updated")}isString(string1,string2){return string1==string2}reload(){const app=require("electron").remote.app;app.relaunch();app.exit();//    window.location.reload();
-}static get properties(){return{selectedPython:{type:String,notify:!0,value:"python3"},gamesFolder:{type:String,notify:!0,value:"Games"},selectedTarget:{type:String,notify:!0,value:null},ndsFiles:{type:Array,notify:!0},cardList:{type:Array,notify:!0},page:{type:String,reflectToAttribute:!0,observer:"_pageChanged"},routeData:Object,subroute:Object}}static get observers(){return["_routePageChanged(routeData.page)"]}_routePageChanged(page){// Show the corresponding page according to the route.
+}});}setDirectoryPathInput(e){var context=this;console.log("Calling directory input");if(this.lastDirectoryDebounce){clearTimeout(this.lastDirectoryDebounce);this.set("lastDirectoryDebounce",null)}this.set("lastDirectoryDebounce",setTimeout(function(){LocalStoreQuery.set("directoryPath",context.directoryPath);MiscUtils.Toast.show("Generator directory path updated")},500))}setSelectedTarget(){var context=this;setTimeout(function(){var selectedTarget=context.selectedTarget;LocalStoreQuery.set("selectedTarget",selectedTarget)},250)}_sortName(a,b){var aName=a.name?a.name.toLowerCase().trim():"zzzzzz",bName=b.name?b.name.toLowerCase().trim():"zzzzzz";return aName.localeCompare(bName)}saveCheckboxOption(e){var checkbox=e.target.closest("paper-checkbox"),name=checkbox.getAttribute("name");console.log("Saving:"+name);var context=this;setTimeout(function(){LocalStoreQuery.set(name,!0==context[name]?"true":"false")},250)}updateFolderForGames(){LocalStoreQuery.set("folderForGames",this.folderForGames);MiscUtils.Toast.show("Folder updated")}isString(string1,string2){return string1==string2}reload(){const app=require("electron").remote.app;app.relaunch();app.exit();//    window.location.reload();
+}static get properties(){return{gamesFolder:{type:String,notify:!0,value:"Games"},selectedTarget:{type:String,notify:!0,value:null},ndsFiles:{type:Array,notify:!0},cardList:{type:Array,notify:!0},page:{type:String,reflectToAttribute:!0,observer:"_pageChanged"},routeData:Object,subroute:Object}}static get observers(){return["_routePageChanged(routeData.page)"]}_routePageChanged(page){// Show the corresponding page according to the route.
 //
 // If no page was found in the route data, page will be an empty string.
 // Show 'game-list' in that case. And if the page doesn't exist, show 'view404'.
